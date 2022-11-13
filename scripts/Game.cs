@@ -9,15 +9,15 @@ namespace GuessMyCard
     internal partial class Game
     {
         public CardFSM.CardFSM? gameFSM = null;
-        public static Card? _myCard { get; set; }
+        public static Card? MyCard { get; set; }
         public static Dictionary<int, Card> CardList = new Dictionary<int, Card>(); // <Suit, Value>
 
         public static string[] SuitList = Card.suits;
         public static string[] ValueList = Card.values;
-        public static Card? _guessedCard { get; set; }
-        public static int _score { get; set; }
-        public static bool _gameloop = true;
-        public static bool _firstboot = true;
+        public static Card? PlayerCard { get; set; }
+        public static int Score { get; set; }
+        public static bool gameloop = true;
+        public static bool firstboot = true;
 
         public Game()
         {
@@ -28,14 +28,29 @@ namespace GuessMyCard
         {
             CreateMyCard();
             BuildCardList();
-            PrintCardList();
             PrintMyCard();
+
+            /* cool code to demonstrate Game.CardList
+            PrintCardList();
+            Card TestCard = new Card();
+            Console.WriteLine("{1} {0}", TestCard.CardValue, TestCard.CardSuit);
+            RemoveCardFromDict(TestCard);
+            PrintCardList();
+            Card TestCard2 = new Card();
+            Console.WriteLine("{1} {0}", TestCard2.CardValue, TestCard2.CardSuit);
+            RemoveCardFromDict(TestCard2);
+            PrintCardList();
+            Card TestCard3 = new Card();
+            Console.WriteLine("{1} {0}", TestCard3.CardValue, TestCard3.CardSuit);
+            RemoveCardFromDict(TestCard3);
+            PrintCardList();
+            */
         }
 
         public void RunGame()
         {
             gameFSM.SetCurrentState(CardFSMStateType.START);
-            while (_gameloop)
+            while (gameloop)
             {
                 gameFSM.Update();
                 gameFSM.Render();

@@ -25,12 +25,12 @@ namespace GuessMyCard
         private static void CreateMyCard()
         {
             Card myCard = new Card();
-            _myCard = myCard;
+            MyCard = myCard;
         }
 
         private static void PrintMyCard()
         {
-            Console.WriteLine("My Card is the {0} of {1}!", _myCard.CardValue, _myCard.CardSuit);
+            Console.WriteLine("My Card is the {0} of {1}!", MyCard.CardValue, MyCard.CardSuit);
         }
 
         private static void BuildCardList()
@@ -41,7 +41,7 @@ namespace GuessMyCard
                 foreach (string value in Card.values)
                 {
                     Card card = new Card(suit, value);
-                    CardList.Add(++index, card);
+                    CardList.Add(index++, card);
                 }
             }
         }
@@ -63,6 +63,19 @@ namespace GuessMyCard
                 return null;
             }
             return input.ToLower();
+        }
+
+        public void RemoveCardFromDict(Card card)
+        {
+            int myKey = 0;
+            foreach (var pair in CardList)
+            {
+                if(pair.Value.CardValue == card.CardValue && pair.Value.CardSuit == card.CardSuit)
+                {
+                    myKey = pair.Key;
+                }
+            }
+            Game.CardList.Remove(myKey);
         }
     }
 }

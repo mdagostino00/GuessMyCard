@@ -22,7 +22,7 @@ namespace GuessMyCard.CardFSM
         }
         public override void Enter()
         {
-            if (Game._firstboot)
+            if (Game.firstboot)
             {
                 Console.WriteLine("Welcome to the Guess My Card Game!");
                 Console.WriteLine("Your computer has chosen a random card out of a deck of 52 cards (jokers excluded).");
@@ -31,7 +31,7 @@ namespace GuessMyCard.CardFSM
                 Console.WriteLine("When you guess the correct suit or value, you will be told that one of your options is correct!");
                 Console.WriteLine("Good Luck! Aim for the lowest score!");
                 Console.WriteLine("(If you want to quit the game, enter \"quit\" at any time.)\n");
-                Game._firstboot = false;
+                Game.firstboot = false;
             }
         }
         public override void Exit()
@@ -76,14 +76,53 @@ namespace GuessMyCard.CardFSM
                 }
                 else
                 {
-                    Game._guessedCard = new Card(yourSuit, yourValue);
-                    Console.WriteLine("Your chosen card is the {1} of {0}!", Game._guessedCard.CardSuit, Game._guessedCard.CardValue);
+                    Game.PlayerCard = new Card(yourSuit, yourValue);
+                    Console.WriteLine("Your chosen card is the {1} of {0}!", Game.PlayerCard.CardSuit, Game.PlayerCard.CardValue);
                 }
             }
         }
         public override void Render()
         {
-            base.Render();
+            // if we don't have a card, probably because we chose to quit in the first round, then perish
+            if (Game.PlayerCard == null)
+            {
+                return;
+            }
+            
+            // check if player's suit matches the game's suit
+            if (Game.PlayerCard.CardSuit == Game.MyCard.CardSuit)
+            {
+                Console.WriteLine("You chose the same suit as my card's suit!");
+            }
+            else
+            {
+                Console.WriteLine("Your suit is incorrect.");
+            }
+
+            // get the index of the card values, with 2 being the lowest index and ace being the highest index
+            int yourCardValueIndex = Array.IndexOf(Card.values, Game.PlayerCard.CardValue);
+            int myCardValueIndex = Array.IndexOf(Card.values, Game.MyCard.CardValue);
+            if (yourCardValueIndex == -1)
+            {
+                Console.Error.WriteLine("Somehow, every check to see if you had a legit card in the CardFSMState_START.Render() function has failed!");
+                return;
+            }
+            if (yourCardValueIndex > myCardValueIndex)
+            {
+                _game.gameFSM.SetCurrentState(CardFSMStateType.HIGHER);
+            }
+            else if (yourCardValueIndex < myCardValueIndex)
+            {
+                _game.gameFSM.SetCurrentState(CardFSMStateType.LOWER);
+            }
+            else if (yourCardValueIndex == myCardValueIndex)
+            {
+                if (Game.PlayerCard.CardSuit == Game.MyCard.CardSuit)
+                {
+                    _game.gameFSM.SetCurrentState(CardFSMStateType.WIN);
+                }
+                Console.WriteLine("Your card's value is the same as my card's value!");
+            }
         }
     }
 
@@ -133,21 +172,16 @@ namespace GuessMyCard.CardFSM
             string? option = Console.ReadLine();
             if (string.IsNullOrEmpty(option) || option == "y")
             {
-                Game._gameloop = false;
+                Game.gameloop = false;
             }
             else
             {
-                /*
-                if (Game._guessedCard)
-                {
-
-                }
-                */
+                _game.gameFSM.SetCurrentState(CardFSMStateType.START);
             }
         }
         public override void Render()
         {
-            if (Game._gameloop == false) {
+            if (Game.gameloop == false) {
                 Console.WriteLine("Thank you for playing!");
             }
         }
@@ -162,19 +196,20 @@ namespace GuessMyCard.CardFSM
         }
         public override void Enter()
         {
-            base.Enter();
+            Console.WriteLine("Your card's value is lower than my card!");
         }
         public override void Exit()
         {
-            base.Exit();
+            Console.WriteLine("You have made a total of {0} guesses!", Game.Score);
+            Console.WriteLine("If you want to give up, just type \"quit\"!\n");
         }
         public override void Update()
         {
-            base.Update();
+            Game.Score++;
         }
         public override void Render()
         {
-            base.Render();
+            _game.gameFSM.SetCurrentState(CardFSMStateType.START);
         }
     }
 
@@ -187,19 +222,20 @@ namespace GuessMyCard.CardFSM
         }
         public override void Enter()
         {
-            base.Enter();
+            Console.WriteLine("Your card's value is lower than my card!");
         }
         public override void Exit()
         {
-            base.Exit();
+            Console.WriteLine("You have made a total of {0} guesses!", Game.Score);
+            Console.WriteLine("If you want to give up, just type \"quit\"!\n");
         }
         public override void Update()
         {
-            base.Update();
+            Game.Score++;
         }
         public override void Render()
         {
-            base.Render();
+            _game.gameFSM.SetCurrentState(CardFSMStateType.START);
         }
     }
 }
