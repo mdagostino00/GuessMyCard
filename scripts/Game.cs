@@ -28,7 +28,7 @@ namespace GuessMyCard
         {
             CreateMyCard();
             BuildCardList();
-            PrintMyCard();
+            //PrintMyCard();
 
             /* cool code to demonstrate Game.CardList
             PrintCardList();

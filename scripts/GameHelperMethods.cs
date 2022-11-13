@@ -3,7 +3,6 @@
  */
 
 using GuessMyCard.CardFSM;
-using System.Xml.Linq;
 
 namespace GuessMyCard
 {
@@ -28,9 +27,9 @@ namespace GuessMyCard
             MyCard = myCard;
         }
 
-        private static void PrintMyCard()
+        public static void PrintMyCard()
         {
-            Console.WriteLine("My Card is the {0} of {1}!", MyCard.CardValue, MyCard.CardSuit);
+            Console.WriteLine("My card was the {0} of {1}!", MyCard.CardValue, MyCard.CardSuit);
         }
 
         private static void BuildCardList()
@@ -65,9 +64,9 @@ namespace GuessMyCard
             return input.ToLower();
         }
 
-        public void RemoveCardFromDict(Card card)
+        public static int RemoveCardFromDict(Card card)
         {
-            int myKey = 0;
+            int myKey = -1;
             foreach (var pair in CardList)
             {
                 if(pair.Value.CardValue == card.CardValue && pair.Value.CardSuit == card.CardSuit)
@@ -76,6 +75,7 @@ namespace GuessMyCard
                 }
             }
             Game.CardList.Remove(myKey);
+            return myKey;
         }
     }
 }

@@ -77,6 +77,10 @@ namespace GuessMyCard.CardFSM
                 else
                 {
                     Game.PlayerCard = new Card(yourSuit, yourValue);
+                    if (Game.RemoveCardFromDict(Game.PlayerCard) == -1)
+                    {
+                        Console.WriteLine("You already chose that card!");
+                    }
                     Console.WriteLine("Your chosen card is the {1} of {0}!", Game.PlayerCard.CardSuit, Game.PlayerCard.CardValue);
                 }
             }
@@ -135,7 +139,8 @@ namespace GuessMyCard.CardFSM
         }
         public override void Enter()
         {
-            base.Enter();
+            Console.WriteLine("Congratulations!");
+            Game.PrintMyCard();
         }
         public override void Exit()
         {
@@ -143,11 +148,13 @@ namespace GuessMyCard.CardFSM
         }
         public override void Update()
         {
-            base.Update();
+            Game.Score++;
+            Game.gameloop = false;
         }
         public override void Render()
         {
-            base.Render();
+            Console.WriteLine("You made a total of {0} guess{1} before correctly guessing my card!", Game.Score, (Game.Score == 1 ? "" : "es"));
+            Console.WriteLine("Thank you for playing!");
         }
     }
 
@@ -182,7 +189,7 @@ namespace GuessMyCard.CardFSM
         public override void Render()
         {
             if (Game.gameloop == false) {
-                Console.WriteLine("Thank you for playing!");
+                Console.WriteLine("Try again next time!");
             }
         }
     }
@@ -196,11 +203,11 @@ namespace GuessMyCard.CardFSM
         }
         public override void Enter()
         {
-            Console.WriteLine("Your card's value is lower than my card!");
+            Console.WriteLine("Your card's value is LOWER than my card!");
         }
         public override void Exit()
         {
-            Console.WriteLine("You have made a total of {0} guesses!", Game.Score);
+            Console.WriteLine("You have made a total of {0} guess{1}!", Game.Score, (Game.Score == 1 ? "" : "es"));
             Console.WriteLine("If you want to give up, just type \"quit\"!\n");
         }
         public override void Update()
@@ -222,11 +229,11 @@ namespace GuessMyCard.CardFSM
         }
         public override void Enter()
         {
-            Console.WriteLine("Your card's value is lower than my card!");
+            Console.WriteLine("Your card's value is HIGHER than my card!");
         }
         public override void Exit()
         {
-            Console.WriteLine("You have made a total of {0} guesses!", Game.Score);
+            Console.WriteLine("You have made a total of {0} guess{1}!", Game.Score, (Game.Score == 1 ? "" : "es"));
             Console.WriteLine("If you want to give up, just type \"quit\"!\n");
         }
         public override void Update()
