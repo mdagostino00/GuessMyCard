@@ -2,3 +2,7 @@
 *.suo
 *.user
 .vs/
+*.zip
+/bin
+/Properties
+/obj

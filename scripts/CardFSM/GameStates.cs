@@ -155,6 +155,8 @@ namespace GuessMyCard.CardFSM
         {
             Console.WriteLine("You made a total of {0} guess{1} before correctly guessing my card!", Game.Score, (Game.Score == 1 ? "" : "es"));
             Console.WriteLine("Thank you for playing!");
+            Console.WriteLine("Enter any key to exit.");
+            Console.ReadLine();
         }
     }
 
@@ -190,6 +192,8 @@ namespace GuessMyCard.CardFSM
         {
             if (Game.gameloop == false) {
                 Console.WriteLine("Try again next time!");
+                Console.WriteLine("Enter any key to exit.");
+                Console.ReadLine();
             }
         }
     }
