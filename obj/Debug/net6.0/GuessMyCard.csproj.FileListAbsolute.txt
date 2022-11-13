@@ -1,0 +1,15 @@
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\bin\Debug\net6.0\GuessMyCard.exe
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\bin\Debug\net6.0\GuessMyCard.deps.json
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\bin\Debug\net6.0\GuessMyCard.runtimeconfig.json
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\bin\Debug\net6.0\GuessMyCard.dll
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\bin\Debug\net6.0\GuessMyCard.pdb
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\GuessMyCard.csproj.AssemblyReference.cache
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\GuessMyCard.GeneratedMSBuildEditorConfig.editorconfig
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\GuessMyCard.AssemblyInfoInputs.cache
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\GuessMyCard.AssemblyInfo.cs
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\GuessMyCard.csproj.CoreCompileInputs.cache
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\GuessMyCard.dll
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\refint\GuessMyCard.dll
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\GuessMyCard.pdb
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\GuessMyCard.genruntimeconfig.cache
+F:\VisualStudioProjects\GuessMyCard\GuessMyCard\obj\Debug\net6.0\ref\GuessMyCard.dll
