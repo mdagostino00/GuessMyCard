@@ -2,9 +2,6 @@
  * Main function for the GuessMyCard assignment
  */
 
-
-using System.Xml.Linq;
-
 namespace GuessMyCard
 {
     internal class Program
