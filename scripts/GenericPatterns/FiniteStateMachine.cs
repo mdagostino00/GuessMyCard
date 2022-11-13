@@ -114,5 +114,13 @@ namespace GuessMyCard.GenericPatterns
                 m_currentState.Update();
             }
         }
+
+        public void Render()
+        {
+            if (m_currentState != null)
+            {
+                m_currentState.Render();
+            }
+        }
     }
 }

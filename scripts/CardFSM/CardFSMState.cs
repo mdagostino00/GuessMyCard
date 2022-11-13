@@ -34,5 +34,9 @@ namespace GuessMyCard.CardFSM
         {
             base.Update();
         }
+        public override void Render()
+        {
+            base.Render();
+        }
     }
 }

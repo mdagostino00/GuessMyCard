@@ -59,6 +59,7 @@ namespace GuessMyCard.GenericPatterns
         public DelegateNoArg? OnEnter;
         public DelegateNoArg? OnExit;
         public DelegateNoArg? OnUpdate;
+        public DelegateNoArg? OnRender;
 
         /// <summary>
         /// <c>State</c>constructor that takes multiple delegate arguments for its functions
@@ -70,11 +71,13 @@ namespace GuessMyCard.GenericPatterns
         public State(T id,
             DelegateNoArg onEnter,
             DelegateNoArg? onExit = null,
-            DelegateNoArg? onUpdate = null) : this(id)
+            DelegateNoArg? onUpdate = null,
+            DelegateNoArg? onRender = null) : this(id)
         {
             OnEnter = onEnter;
             OnExit = onExit;
             OnUpdate = onUpdate;
+            OnRender = onRender;
         }
 
         /// <summary>
@@ -85,15 +88,18 @@ namespace GuessMyCard.GenericPatterns
         /// <param name="onEnter">onEnter function pointer</param>
         /// <param name="onExit">on Exit function pointer</param>
         /// <param name="onUpdate">onUpdate function pointer</param>
+        /// <param name="onRender">onRender function pointer</param>
         public State(T id,
             string name,
-            DelegateNoArg onEnter,
+            DelegateNoArg? onEnter,
             DelegateNoArg? onExit = null,
-            DelegateNoArg? onUpdate = null) : this(id, name)
+            DelegateNoArg? onUpdate = null,
+            DelegateNoArg? onRender = null) : this(id, name)
         {
             OnEnter = onEnter;
             OnExit = onExit;
             OnUpdate = onUpdate;
+            OnRender = onRender;
         }
 
         /// <summary>
@@ -118,6 +124,11 @@ namespace GuessMyCard.GenericPatterns
         public virtual void Update()
         {
             OnUpdate?.Invoke();
+        }
+
+        public virtual void Render()
+        {
+            OnRender?.Invoke();
         }
     }
 }
